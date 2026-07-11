@@ -14,13 +14,14 @@ def build():
     # ==========================================
     # 2. ファイルのコピー
     #    ツールが増えたら、ここに追記していく
-    #    （例：shutil.copy('monitoring.html', 'dist/monitoring.html')）
     # ==========================================
-    if os.path.exists('index.html'):
-        shutil.copy('index.html', 'dist/index.html')
-        print("✅ index.html を dist フォルダに正常にコピーしました。")
-    else:
-        print("❌ エラー: ルートディレクトリに index.html が見つかりません。")
+    files_to_copy = ['index.html', 'style.css', 'script.js']
+    for filename in files_to_copy:
+        if os.path.exists(filename):
+            shutil.copy(filename, f'dist/{filename}')
+            print(f"✅ {filename} を dist フォルダに正常にコピーしました。")
+        else:
+            print(f"❌ エラー: ルートディレクトリに {filename} が見つかりません。")
 
 if __name__ == "__main__":
     build()

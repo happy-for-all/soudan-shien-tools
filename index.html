@@ -1,15 +1,205 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 完成するまでは noindex, nofollow を維持すること。
-       本番公開の直前にこのタグを削除する。 -->
-  <meta name="robots" content="noindex, nofollow">
-  <title>相談支援ツール【準備中】</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 公開準備が整うまでは noindex, nofollow を維持してください。
+     手動で削除してから本番公開してください。 -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>モニタリング・計画更新の期限管理ツール｜相談支援ノート</title>
+<meta name="description" content="サービス等利用計画のモニタリング時期・更新期限を、起算日と頻度から自動計算。相談支援専門員・ケアマネの実務経験にもとづく無料ツールです。データはブラウザ内にのみ保存され、サーバーには送信されません。">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%25' y='50%25' style='dominant-baseline:central;text-anchor:middle;font-size:80px;'>🍀</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "モニタリングの期間はどう決まりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "モニタリング（サービス等利用計画の見直し）の頻度は、支給決定の際に自治体が定める標準期間（例：1ヶ月・3ヶ月・6ヶ月・12ヶ月ごと等）にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "このツールの計算結果はそのまま提出書類に使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "入力したデータはどこに保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "入力内容はお使いのブラウザ内（localStorage）にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
-  <h1>準備中です</h1>
-  <p>このページは疎通確認用の仮ページです。ここに実際の記事とツールを組み込んでいきます。</p>
+
+<div id="bg-scene" aria-hidden="true">
+  <div class="sun-glow"></div>
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+  <div class="cloud cloud-c"></div>
+  <div class="ground"></div>
+  <div class="clover-row">
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+  </div>
+</div>
+
+<!-- クローバー形状の定義（1回だけ記述し、使い回す） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="clover-shape">
+      <path d="M50 50 C50 30, 30 20, 20 35 C12 47, 25 58, 50 50 Z" fill="#6FAE73"/>
+      <path d="M50 50 C70 30, 80 20, 90 35 C98 47, 85 58, 50 50 Z" fill="#5F9F64"/>
+      <path d="M50 50 C50 70, 30 80, 20 65 C12 53, 25 42, 50 50 Z" fill="#5F9F64"/>
+      <path d="M50 50 C70 70, 80 80, 90 65 C98 53, 85 42, 50 50 Z" fill="#4F8A55"/>
+      <rect x="47" y="50" width="6" height="26" rx="3" fill="#3F7A46"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="brand">相談支援ノート
+    <span>相談支援専門員の実務経験にもとづく、記事とツールのサイト</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="tool-card" aria-labelledby="tool-heading">
+    <h1 id="tool-heading">モニタリング・計画更新の期限管理ツール</h1>
+    <p class="lede">担当している利用者の「起算日」と「頻度」を入れるだけで、次回モニタリング予定日と提出締切の目安を自動計算し、一覧で管理できます。</p>
+
+    <form id="monitoring-form" class="tool-form">
+      <div class="field">
+        <label for="f-name">名称（任意・イニシャル等）</label>
+        <input type="text" id="f-name" maxlength="40" placeholder="例：Aさん">
+      </div>
+      <div class="field">
+        <label for="f-start">起算日（前回モニタリング日 等）</label>
+        <input type="date" id="f-start" required>
+      </div>
+      <div class="field">
+        <label for="f-freq">頻度</label>
+        <select id="f-freq">
+          <option value="1">毎月</option>
+          <option value="3" selected>3ヶ月ごと</option>
+          <option value="6">6ヶ月ごと</option>
+          <option value="12">12ヶ月ごと</option>
+        </select>
+      </div>
+      <div class="field">
+        <button type="submit" class="btn btn-primary">追加して計算</button>
+      </div>
+    </form>
+
+    <div class="disclaimer-note">
+      入力したデータは<strong>あなただけのブラウザに保存</strong>されます。サーバーには送信されないので安心してください。
+      ただし、違う端末・ブラウザからアクセスすると表示されません。端末を変える場合は「CSV書き出し」をご利用ください。
+      また、本ツールの表示はあくまで目安です。正式な期限は自治体・指定基準にてご確認ください。
+    </div>
+
+    <div id="table-wrap" class="entry-table-wrap">
+      <table class="entries">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>頻度</th>
+            <th>次回モニタリング予定日</th>
+            <th>提出締切目安</th>
+            <th>残り日数</th>
+            <th>状態</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="entry-tbody"></tbody>
+      </table>
+    </div>
+    <p id="empty-state" class="empty-state">まだ登録がありません。上のフォームから追加してください。</p>
+
+    <div class="btn-row">
+      <button type="button" id="export-csv" class="btn btn-ghost">CSVで書き出す</button>
+      <button type="button" id="print-list" class="btn btn-ghost">この一覧を印刷する</button>
+    </div>
+  </section>
+
+  <main class="article">
+
+    <section>
+      <h2>モニタリングとは？なぜ期限管理が重要なのか</h2>
+      <p>モニタリングとは、サービス等利用計画にもとづいてサービスを利用している方の状況を定期的に確認し、計画が実情に合っているかを見直す手続きです。相談支援専門員にとって、このモニタリングの実施と記録は、報酬の算定要件そのものに直結しています。</p>
+      <p>実施時期を過ぎてしまうと、モニタリング加算が算定できなくなるだけでなく、実地指導・運営指導の場面で「計画的な支援ができていない」と指摘される原因にもなります。担当件数が増えるほど、この期限管理は記憶やExcelだけでは追いつきにくくなります。</p>
+    </section>
+
+    <section>
+      <h2>モニタリング期間の目安（一般的な考え方）</h2>
+      <p>モニタリングの標準期間は、利用者の状態やサービス種別に応じて、自治体が個別に支給決定の際に定めます。一般的には次のような頻度が目安として使われることが多いですが、必ず個々の受給者証・支給決定通知書に記載された頻度をご確認ください。</p>
+      <ul>
+        <li>集中的な支援が必要なケース：毎月</li>
+        <li>比較的状態が安定しているケース：3ヶ月ごと</li>
+        <li>長期的に安定しているケース：6ヶ月・12ヶ月ごと</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>使い方（3ステップ）</h2>
+      <ol class="step-list">
+        <li>担当している利用者の「起算日（前回のモニタリング実施日など）」と「頻度」をフォームに入力します。</li>
+        <li>「追加して計算」を押すと、次回モニタリング予定日と提出締切目安が一覧に表示されます。</li>
+        <li>複数の利用者を登録すると、締切が近い順に自動で並び替わります。締切が近いものは色付きで強調表示されます。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>よくある質問</h2>
+      <details class="faq-item">
+        <summary>モニタリングの期間はどう決まりますか？</summary>
+        <p>モニタリングの頻度は、支給決定の際に自治体が定める標準期間にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。</p>
+      </details>
+      <details class="faq-item">
+        <summary>このツールの計算結果はそのまま提出書類に使えますか？</summary>
+        <p>本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。</p>
+      </details>
+      <details class="faq-item">
+        <summary>入力したデータはどこに保存されますか？</summary>
+        <p>入力内容はお使いのブラウザ内にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。</p>
+      </details>
+    </section>
+
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <p>本サイトの情報は一般的な目安を示すものであり、個別のケースに対する正式な判断・助言に代わるものではありません。正式な基準は各自治体・関係機関にご確認ください。</p>
+  <p style="margin-top:6px;">© 相談支援ノート</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
