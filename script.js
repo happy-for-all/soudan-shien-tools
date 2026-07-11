@@ -274,8 +274,27 @@
     if (exportBtn) exportBtn.addEventListener("click", exportCsv);
     if (printBtn) printBtn.addEventListener("click", () => window.print());
 
-    render();
+render();
     initParallax();
+    initPageTop();
+  }
+
+  // ---------------------------------------------------------
+  // 9. トップに戻るボタン
+  // ---------------------------------------------------------
+  function initPageTop() {
+    const btn = document.getElementById("page-top");
+    if (!btn) return;
+    window.addEventListener(
+      "scroll",
+      () => {
+        btn.classList.toggle("show", window.scrollY > 300);
+      },
+      { passive: true }
+    );
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
 
   document.addEventListener("DOMContentLoaded", init);
