@@ -222,7 +222,48 @@
   }
 
   // ---------------------------------------------------------
-  // 6. 初期化
+  // 7. 背景パララックス
+  //    スクロール量に応じて空・雲（遠景）と土手・クローバー（近景）を
+  //    異なる速度でわずかに動かし、奥行きのある「流れ」を演出する。
+  //    prefers-reduced-motion が有効な場合は一切動かさない。
+  // ---------------------------------------------------------
+  function initParallax() {
+    const skyLayer = document.getElementById("parallax-sky");
+    const groundLayer = document.getElementById("parallax-ground");
+    if (!skyLayer || !groundLayer) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    let ticking = false;
+
+    function update() {
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      // 遠景（空・雲・太陽）はゆっくり、近景（土手・クローバー）はさらにゆっくり動かす
+      const skyOffset = Math.min(scrollY * 0.12, 160);
+      const groundOffset = Math.min(scrollY * 0.04, 40);
+
+      skyLayer.style.transform = `translateY(${skyOffset}px)`;
+      groundLayer.style.transform = `translateY(${groundOffset}px)`;
+      ticking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    update();
+  }
+
+  // ---------------------------------------------------------
+  // 8. 初期化
   // ---------------------------------------------------------
   function init() {
     const form = document.getElementById("monitoring-form");
@@ -234,6 +275,7 @@
     if (printBtn) printBtn.addEventListener("click", () => window.print());
 
     render();
+    initParallax();
   }
 
   document.addEventListener("DOMContentLoaded", init);

@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 
 <title>モニタリング・計画更新の期限管理ツール｜相談支援ノート</title>
-<meta name="description" content="サービス等利用計画のモニタリング時期・更新期限を、起算日と頻度から自動計算。相談支援専門員・ケアマネの実務経験にもとづく無料ツールです。データはブラウザ内にのみ保存され、サーバーには送信されません。">
+<meta name="description" content="サービス等利用計画のモニタリング時期・更新期限を、起算日と頻度から自動計算。相談支援専門員・ケアマネの実務経験にもとづく無料ツールと解説記事。データはブラウザ内にのみ保存され、サーバーには送信されません。">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%25' y='50%25' style='dominant-baseline:central;text-anchor:middle;font-size:80px;'>🍀</text></svg>">
 
@@ -25,27 +25,68 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "モニタリングの期間はどう決まりますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "モニタリング（サービス等利用計画の見直し）の頻度は、支給決定の際に自治体が定める標準期間（例：1ヶ月・3ヶ月・6ヶ月・12ヶ月ごと等）にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。"
-      }
+      "name": "モニタリングの頻度はどう決まりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "モニタリング（サービス等利用計画の見直し）の頻度は、支給決定の際に自治体が個別に定める標準期間にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。" }
     },
     {
       "@type": "Question",
       "name": "このツールの計算結果はそのまま提出書類に使えますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。"
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。" }
     },
     {
       "@type": "Question",
       "name": "入力したデータはどこに保存されますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "入力内容はお使いのブラウザ内（localStorage）にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。"
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "入力内容はお使いのブラウザ内（localStorage）にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "モニタリングと個別支援計画の違いは何ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "モニタリングは相談支援専門員が作成する『サービス等利用計画』の実施状況を確認・見直す手続きです。一方、個別支援計画は各サービス提供事業所が作成する、現場での具体的な支援内容を定めた計画で、役割が異なります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "モニタリングを忘れて期限を過ぎてしまったらどうなりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "期限内にモニタリングが実施できない場合、モニタリング加算が算定できなくなるほか、実地指導・運営指導で計画的な支援ができていないと指摘される要因になり得ます。遅延に気づいた時点で早めに実施し、記録に理由を残しておくことが望ましいとされています。" }
+    },
+    {
+      "@type": "Question",
+      "name": "モニタリング加算とは何ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "モニタリングを定められた期間内に適切に実施し、記録を作成した場合に算定できる報酬上の加算です。算定要件の詳細は制度改定により変わることがあるため、最新の報酬告示・自治体の案内でご確認ください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "電話や訪問以外の方法でモニタリングを実施できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "実施方法の可否は自治体や運用基準によって取り扱いが異なる場合があります。対面が原則とされるケースもあるため、電話等での実施を検討する場合は事前に自治体・基幹相談支援センター等に確認することをおすすめします。" }
+    },
+    {
+      "@type": "Question",
+      "name": "家族だけに会ってモニタリングを実施したことになりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "本人の状況確認が基本とされているため、家族のみの面談で完結してよいかは個別の状況やルールによります。判断に迷う場合は、記録に経緯を残したうえで、自治体や上司・スーパーバイザーに確認することが望ましいです。" }
+    },
+    {
+      "@type": "Question",
+      "name": "相談支援専門員1人あたりの担当件数の目安はありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "担当件数の目安は事業所の体制や地域の実情によって幅があります。一律の基準を示すことは難しいため、自事業所の体制や自治体の指導内容と照らし合わせてご検討ください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "モニタリング表・記録用紙に決まった様式はありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "国が定める統一様式があるわけではなく、自治体ごとに参考様式を用意している場合があります。事業所独自の様式を使うケースも多いため、必要な記載項目（実施日・状況・今後の方針等）を満たしていれば形式は柔軟です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "支給決定の有効期間とモニタリング期間は同じですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "支給決定の有効期間（サービスを利用できる期間）と、モニタリングの実施頻度は別の概念です。有効期間内に、定められた頻度でモニタリングを繰り返し実施していく形になります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "利用者の状態が急変した場合、次の定例モニタリングまで待つ必要がありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "状態の急変やサービス内容の変更が必要になった場合は、定例のタイミングを待たずに随時モニタリングを実施し、計画の見直しを行うのが一般的な考え方です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "このツールに入力した情報は、事業所の他のスタッフと共有できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "データはブラウザ内にのみ保存されるため、他の端末とは自動的に共有されません。共有したい場合は、CSV書き出し機能でファイルを出力し、事業所内のルールに沿って安全に共有してください。" }
     }
   ]
 }
@@ -54,19 +95,24 @@
 <body>
 
 <div id="bg-scene" aria-hidden="true">
-  <div class="sun-glow"></div>
-  <div class="cloud cloud-a"></div>
-  <div class="cloud cloud-b"></div>
-  <div class="cloud cloud-c"></div>
-  <div class="ground"></div>
-  <div class="clover-row">
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
-    <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+  <div class="parallax-sky" id="parallax-sky">
+    <div class="sun-glow"></div>
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
+    <div class="cloud cloud-d"></div>
+  </div>
+  <div class="parallax-ground" id="parallax-ground">
+    <div class="ground"></div>
+    <div class="clover-row">
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+      <svg class="clover" viewBox="0 0 100 100"><use href="#clover-shape"></use></svg>
+    </div>
   </div>
 </div>
 
@@ -148,15 +194,15 @@
     </div>
   </section>
 
-  <main class="article">
+  <main class="article-flow">
 
-    <section>
+    <section class="glass-section">
       <h2>モニタリングとは？なぜ期限管理が重要なのか</h2>
       <p>モニタリングとは、サービス等利用計画にもとづいてサービスを利用している方の状況を定期的に確認し、計画が実情に合っているかを見直す手続きです。相談支援専門員にとって、このモニタリングの実施と記録は、報酬の算定要件そのものに直結しています。</p>
       <p>実施時期を過ぎてしまうと、モニタリング加算が算定できなくなるだけでなく、実地指導・運営指導の場面で「計画的な支援ができていない」と指摘される原因にもなります。担当件数が増えるほど、この期限管理は記憶やExcelだけでは追いつきにくくなります。</p>
     </section>
 
-    <section>
+    <section class="glass-section">
       <h2>モニタリング期間の目安（一般的な考え方）</h2>
       <p>モニタリングの標準期間は、利用者の状態やサービス種別に応じて、自治体が個別に支給決定の際に定めます。一般的には次のような頻度が目安として使われることが多いですが、必ず個々の受給者証・支給決定通知書に記載された頻度をご確認ください。</p>
       <ul>
@@ -164,9 +210,10 @@
         <li>比較的状態が安定しているケース：3ヶ月ごと</li>
         <li>長期的に安定しているケース：6ヶ月・12ヶ月ごと</li>
       </ul>
+      <p class="section-note">上記は一般的な考え方の一例であり、すべてのケースに当てはまるものではありません。個別の頻度は必ず公式の通知書でご確認ください。</p>
     </section>
 
-    <section>
+    <section class="glass-section">
       <h2>使い方（3ステップ）</h2>
       <ol class="step-list">
         <li>担当している利用者の「起算日（前回のモニタリング実施日など）」と「頻度」をフォームに入力します。</li>
@@ -175,20 +222,101 @@
       </ol>
     </section>
 
-    <section>
+    <section class="glass-section">
       <h2>よくある質問</h2>
-      <details class="faq-item">
-        <summary>モニタリングの期間はどう決まりますか？</summary>
-        <p>モニタリングの頻度は、支給決定の際に自治体が定める標準期間にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。</p>
-      </details>
-      <details class="faq-item">
-        <summary>このツールの計算結果はそのまま提出書類に使えますか？</summary>
-        <p>本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。</p>
-      </details>
-      <details class="faq-item">
-        <summary>入力したデータはどこに保存されますか？</summary>
-        <p>入力内容はお使いのブラウザ内にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。</p>
-      </details>
+      <div class="accordion-group">
+        <details class="faq-item">
+          <summary>モニタリングの頻度はどう決まりますか？</summary>
+          <p>モニタリングの頻度は、支給決定の際に自治体が個別に定める標準期間にもとづきます。正確な頻度は、利用者ごとの受給者証や支給決定通知書でご確認ください。</p>
+        </details>
+        <details class="faq-item">
+          <summary>このツールの計算結果はそのまま提出書類に使えますか？</summary>
+          <p>本ツールの表示は目安です。実際の提出期限や運用は自治体・事業所の指定基準により異なる場合があるため、正式な期限は必ず担当の自治体窓口や指定基準でご確認ください。</p>
+        </details>
+        <details class="faq-item">
+          <summary>入力したデータはどこに保存されますか？</summary>
+          <p>入力内容はお使いのブラウザ内にのみ保存され、サーバーには一切送信されません。別の端末やブラウザからは参照できないため、必要に応じてCSV書き出し機能をご利用ください。</p>
+        </details>
+        <details class="faq-item">
+          <summary>モニタリングと個別支援計画の違いは何ですか？</summary>
+          <p>モニタリングは相談支援専門員が作成するサービス等利用計画の実施状況を確認・見直す手続きです。個別支援計画は各サービス提供事業所が作成する、現場での具体的な支援内容を定めた計画で、役割が異なります。</p>
+        </details>
+        <details class="faq-item">
+          <summary>モニタリングを忘れて期限を過ぎてしまったらどうなりますか？</summary>
+          <p>期限内に実施できない場合、モニタリング加算が算定できなくなるほか、実地指導・運営指導で指摘される要因になり得ます。気づいた時点で早めに実施し、記録に経緯を残しておくことが望ましいです。</p>
+        </details>
+        <details class="faq-item">
+          <summary>モニタリング加算とは何ですか？</summary>
+          <p>モニタリングを定められた期間内に適切に実施し、記録を作成した場合に算定できる報酬上の加算です。算定要件は制度改定で変わることがあるため、最新の報酬告示でご確認ください。</p>
+        </details>
+        <details class="faq-item">
+          <summary>電話や訪問以外の方法でモニタリングを実施できますか？</summary>
+          <p>実施方法の可否は自治体・運用基準によって取り扱いが異なる場合があります。対面が原則とされるケースもあるため、事前に自治体・基幹相談支援センター等に確認することをおすすめします。</p>
+        </details>
+        <details class="faq-item">
+          <summary>家族だけに会ってモニタリングを実施したことになりますか？</summary>
+          <p>本人の状況確認が基本とされているため、家族のみの面談で完結してよいかは個別の状況やルールによります。判断に迷う場合は記録に経緯を残し、自治体や上司に確認することが望ましいです。</p>
+        </details>
+        <details class="faq-item">
+          <summary>相談支援専門員1人あたりの担当件数の目安はありますか？</summary>
+          <p>担当件数の目安は事業所の体制や地域の実情によって幅があります。一律の基準を示すのは難しいため、自事業所の体制や自治体の指導内容と照らし合わせてご検討ください。</p>
+        </details>
+        <details class="faq-item">
+          <summary>モニタリング表・記録用紙に決まった様式はありますか？</summary>
+          <p>国が定める統一様式があるわけではなく、自治体ごとに参考様式を用意している場合があります。必要な記載項目（実施日・状況・今後の方針等）を満たしていれば形式は柔軟です。</p>
+        </details>
+        <details class="faq-item">
+          <summary>支給決定の有効期間とモニタリング期間は同じですか？</summary>
+          <p>支給決定の有効期間（サービスを利用できる期間）と、モニタリングの実施頻度は別の概念です。有効期間内に、定められた頻度でモニタリングを繰り返し実施していく形になります。</p>
+        </details>
+        <details class="faq-item">
+          <summary>利用者の状態が急変した場合、次の定例モニタリングまで待つ必要がありますか？</summary>
+          <p>状態の急変やサービス内容の変更が必要になった場合は、定例のタイミングを待たずに随時モニタリングを実施し、計画を見直すのが一般的な考え方です。</p>
+        </details>
+        <details class="faq-item">
+          <summary>このツールに入力した情報は、事業所の他のスタッフと共有できますか？</summary>
+          <p>データはブラウザ内にのみ保存されるため、他の端末とは自動的に共有されません。共有したい場合はCSV書き出し機能でファイルを出力し、事業所内のルールに沿って共有してください。</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="glass-section">
+      <h2>相談支援・障害福祉サービス 用語集</h2>
+      <p class="section-note">相談支援に関わる基本的な用語を簡単にまとめています。正確な定義・要件は必ず公式の制度資料でご確認ください。</p>
+      <div class="accordion-group">
+        <details class="glossary-item">
+          <summary>サービス等利用計画</summary>
+          <p>障害福祉サービスを利用するにあたり、相談支援専門員が利用者本人の意向や生活状況を踏まえて作成する計画。どのサービスを、どのような目的・頻度で利用するかを示す土台になります。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>モニタリング</summary>
+          <p>作成したサービス等利用計画にもとづき、実際の利用状況やご本人の状態を定期的に確認し、必要に応じて計画を見直す一連の手続きです。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>支給決定</summary>
+          <p>自治体が、申請者に対してどのサービスをどの程度（量・期間）利用できるかを決定する行政手続きです。この決定にもとづいて受給者証が交付されます。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>障害支援区分</summary>
+          <p>必要とされる支援の度合いを示す区分で、認定調査等の結果にもとづき決定されます。利用できるサービスの内容に関わる指標のひとつです。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>セルフプラン</summary>
+          <p>相談支援専門員を通さず、利用者本人や家族が自分たちでサービス等利用計画を作成する方法です。地域や状況によって取り扱いが異なります。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>相談支援専門員</summary>
+          <p>サービス等利用計画の作成やモニタリングなど、障害福祉サービスの利用に関する相談支援を専門に担う有資格の専門職です。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>特定相談支援</summary>
+          <p>サービス等利用計画の作成とモニタリングを行う相談支援の枠組みのひとつです。事業所はこの枠組みで指定を受けて運営します。</p>
+        </details>
+        <details class="glossary-item">
+          <summary>計画相談支援給付費</summary>
+          <p>特定相談支援事業所が、計画作成やモニタリングを行った際に自治体から支払われる報酬です。算定要件は制度改定により変わることがあります。</p>
+        </details>
+      </div>
     </section>
 
   </main>

@@ -27,6 +27,7 @@
   --text-main:    #2E3B2E;
   --text-sub:     #55684F;
   --card-bg:      rgba(255, 253, 247, 0.94);
+  --card-bg-soft: rgba(255, 253, 247, 0.86);
   --card-border:  rgba(111, 174, 115, 0.28);
   --accent:       #E8834A;
   --accent-dark:  #C96A36;
@@ -37,6 +38,7 @@
   --radius-lg:    22px;
   --radius-md:    14px;
   --shadow-card:  0 14px 36px rgba(60, 80, 50, 0.16);
+  --section-gap:  72px;
 }
 
 /* -----------------------------------------
@@ -69,13 +71,17 @@ input, select { font-family: inherit; }
 }
 
 /* -----------------------------------------
-   3. 背景シーン（太陽・空・雲・土手・クローバー）
+   3. 背景シーン（固定・パララックス）
+   「ここ・なないろ」と同様に画面全体に固定し、
+   コンテンツが手前をスクロールして流れる方式。
+   JS（script.js）が .parallax-sky / .parallax-ground に
+   スクロール量に応じたtransformを与え、奥行きを出す。
    ----------------------------------------- */
 #bg-scene {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
-  width: 100%;
-  height: 780px;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -85,6 +91,13 @@ input, select { font-family: inherit; }
     var(--sky-mid) 55%,
     var(--sky-low) 100%
   );
+}
+
+.parallax-sky,
+.parallax-ground {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
 }
 
 /* 太陽 */
@@ -129,12 +142,16 @@ input, select { font-family: inherit; }
 .cloud-c::before { width: 50px; height: 42px; top: -20px; left: 14px; }
 .cloud-c::after  { width: 36px; height: 30px; top: -13px; left: 56px; }
 
+.cloud-d { width: 90px; height: 26px; top: 40%; left: 22%; opacity: .7; animation: drift 68s linear infinite reverse; }
+.cloud-d::before { width: 42px; height: 36px; top: -18px; left: 10px; }
+.cloud-d::after  { width: 30px; height: 26px; top: -11px; left: 46px; }
+
 @keyframes drift {
   from { transform: translateX(-40px); }
   to   { transform: translateX(calc(100vw + 40px)); }
 }
 
-/* 土手・大地 */
+/* 土手・大地（常に画面下端に固定） */
 .ground {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -151,7 +168,7 @@ input, select { font-family: inherit; }
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
 
-/* クローバー（SVGをCSSでゆらす） */
+/* クローバー */
 .clover-row {
   position: absolute;
   bottom: 130px;
@@ -174,6 +191,12 @@ input, select { font-family: inherit; }
 @keyframes sway {
   0%, 100% { transform: rotate(-4deg); }
   50%      { transform: rotate(4deg); }
+}
+
+/* 動きを抑えたい人向け（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce) {
+  .sun-glow, .cloud, .clover { animation: none !important; }
+  .parallax-sky, .parallax-ground { transform: none !important; }
 }
 
 /* -----------------------------------------
@@ -327,32 +350,50 @@ tr.row-warning { background: var(--warn-bg); }
 }
 
 /* -----------------------------------------
-   6. 記事エリア（SEOコンテンツ）
+   6. 記事エリア（ガラス風パネルの連なり）
+   パネル同士の間隔（gap）から背景が透けて見え、
+   スクロールに伴って「流れている」印象を作る。
    ----------------------------------------- */
-main.article {
+.article-flow {
   position: relative;
   z-index: 1;
-  background: #fff;
-  margin-top: 46px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  margin-top: var(--section-gap);
+}
+
+.glass-section {
+  background: var(--card-bg-soft);
+  backdrop-filter: blur(2px);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  padding: 8px 30px 40px;
+  padding: 30px 30px 34px;
 }
-main.article section { padding-top: 34px; }
-main.article h2 {
+
+.glass-section h2 {
   font-size: 20px;
   color: var(--clover-dark);
   border-left: 6px solid var(--clover-main);
   padding-left: 12px;
   margin-bottom: 14px;
 }
-main.article h3 {
+.glass-section h3 {
   font-size: 16px;
   color: var(--text-main);
   margin: 18px 0 8px;
 }
-main.article p, main.article li { color: var(--text-main); font-size: 15px; }
-main.article ul, main.article ol { padding-left: 22px; margin-bottom: 10px; }
+.glass-section p, .glass-section li { color: var(--text-main); font-size: 15px; }
+.glass-section ul, .glass-section ol { padding-left: 22px; margin-bottom: 10px; }
+.glass-section .section-note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-sub);
+  background: rgba(111,174,115,0.08);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
 
 .step-list { list-style: none; padding-left: 0; counter-reset: step; }
 .step-list li {
@@ -374,17 +415,69 @@ main.article ul, main.article ol { padding-left: 22px; margin-bottom: 10px; }
   display: flex; align-items: center; justify-content: center;
 }
 
-.faq-item { border-bottom: 1px solid rgba(111,174,115,0.2); padding: 14px 0; }
+/* アコーディオン（FAQ・用語集共通） */
+.accordion-group { display: flex; flex-direction: column; }
+.faq-item {
+  border-bottom: 1px solid rgba(111,174,115,0.2);
+  padding: 14px 0;
+}
+.faq-item:last-child { border-bottom: none; }
 .faq-item summary {
   cursor: pointer;
   font-weight: 700;
   color: var(--text-main);
   list-style: none;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::before { content: "Q. "; color: var(--clover-dark); }
-.faq-item p { margin-top: 8px; color: var(--text-sub); }
-.faq-item p::before { content: "A. "; color: var(--accent); font-weight: 700; }
+.faq-item summary::before {
+  content: "Q";
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--clover-dark);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.faq-item p {
+  margin-top: 10px;
+  padding-left: 30px;
+  color: var(--text-sub);
+  position: relative;
+}
+.faq-item p::before {
+  content: "A";
+  position: absolute;
+  left: 0; top: 1px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* 用語集アコーディオン（QAより簡素な見た目） */
+.glossary-item {
+  border-bottom: 1px solid rgba(111,174,115,0.2);
+  padding: 12px 0;
+}
+.glossary-item:last-child { border-bottom: none; }
+.glossary-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--clover-dark);
+  list-style: none;
+}
+.glossary-item summary::-webkit-details-marker { display: none; }
+.glossary-item summary::before { content: "🍀 "; }
+.glossary-item p { margin-top: 8px; color: var(--text-sub); padding-left: 22px; }
 
 footer.site-footer {
   position: relative; z-index: 1;
@@ -401,11 +494,11 @@ footer.site-footer a { text-decoration: underline; }
    7. レスポンシブ
    ----------------------------------------- */
 @media (max-width: 720px) {
-  #bg-scene { height: 560px; }
   .tool-form { grid-template-columns: 1fr 1fr; }
   .tool-card { padding: 24px 18px 20px; }
-  main.article { padding: 4px 18px 30px; }
+  .glass-section { padding: 24px 18px 28px; }
   .sun-glow { width: 120px; height: 120px; top: 5%; right: 6%; }
+  :root { --section-gap: 48px; }
 }
 @media (max-width: 420px) {
   .tool-form { grid-template-columns: 1fr; }
@@ -415,7 +508,7 @@ footer.site-footer a { text-decoration: underline; }
    8. 印刷用スタイル
    ----------------------------------------- */
 @media print {
-  #bg-scene, header.site-header, main.article, footer.site-footer,
+  #bg-scene, header.site-header, .article-flow, footer.site-footer,
   .btn-row, .disclaimer-note, form.tool-form { display: none !important; }
   body { background: #fff; }
   .tool-card { box-shadow: none; border: none; }
