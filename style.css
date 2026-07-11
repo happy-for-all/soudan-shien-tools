@@ -503,13 +503,52 @@ footer.site-footer a { text-decoration: underline; }
 @media (max-width: 420px) {
   .tool-form { grid-template-columns: 1fr; }
 }
+/* -----------------------------------------
+   8. トップに戻るボタン
+   ----------------------------------------- */
+#page-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  background: var(--card-bg);
+  border: 2.5px solid var(--clover-main);
+  border-radius: 50%;
+  color: var(--clover-dark);
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 9000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: all 0.35s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 16px rgba(63, 122, 70, 0.22),
+              0 0 0 4px rgba(111, 174, 115, 0.10);
+  line-height: 1;
+}
+#page-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#page-top:hover {
+  background: var(--clover-main);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(63, 122, 70, 0.38),
+              0 0 0 6px rgba(111, 174, 115, 0.18);
+  transform: translateY(-3px);
+}
 
 /* -----------------------------------------
-   8. 印刷用スタイル
+   9. 印刷用スタイル
    ----------------------------------------- */
 @media print {
   #bg-scene, header.site-header, .article-flow, footer.site-footer,
-  .btn-row, .disclaimer-note, form.tool-form { display: none !important; }
+  .btn-row, .disclaimer-note, form.tool-form, #page-top { display: none !important; }
   body { background: #fff; }
   .tool-card { box-shadow: none; border: none; }
   .print-only { display: block !important; }
