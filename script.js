@@ -61,7 +61,13 @@
     }
 
     // 提出締切目安：次回予定月の「前月末日」
-    const deadline = new Date(next.getFullYear(), next.getMonth(), 0);
+    // ただし頻度が「毎月（1ヶ月ごと）」の場合、前月末日は常に「今」と
+    // ほぼ同じ日付になり締切の概念が成立しないため、次回予定日と
+    // 同じ日付を締切目安として扱う。
+    const deadline =
+      freqMonths === 1
+        ? new Date(next.getTime())
+        : new Date(next.getFullYear(), next.getMonth(), 0);
 
     return { next, deadline };
   }
