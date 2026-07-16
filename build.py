@@ -15,7 +15,7 @@ def build():
     # 2. ファイルのコピー
     #    ツールが増えたら、ここに追記していく
     # ==========================================
-    files_to_copy = ['index.html', 'style.css', 'script.js', 'favicon.ico']
+    files_to_copy = ['index.html', 'style.css', 'script.js', 'favicon.ico', "ads.txt"]
     for filename in files_to_copy:
         if os.path.exists(filename):
             shutil.copy(filename, f'dist/{filename}')
